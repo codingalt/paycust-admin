@@ -1,0 +1,15 @@
+.wrapper{
+
+    .top{
+        font-weight: 700;
+        font-size: 1.7rem;
+        letter-spacing: .4px;
+        margin-bottom: 1.5rem;
+    }
+
+    .applications{
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+}

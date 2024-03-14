@@ -1,0 +1,24 @@
+.wrapper{
+    width: 100%;
+    height: 100%;
+    margin: 2rem;
+
+    .top{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+        align-items: center;
+
+        img{
+            width: 6rem;
+        }
+
+        span{
+            font-weight: 700;
+            font-size: 1.51rem;
+            letter-spacing: .5px;
+            color: #333333;
+        }
+    }
+}

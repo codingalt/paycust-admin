@@ -1,0 +1,16 @@
+.wrapper{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+
+    .dashboard{
+        display: flex;
+        flex-direction: column;
+        width: calc(100% - 270px);
+
+        .content{
+            width: 100%;
+            padding: .9rem 1.7rem;
+        }
+    }
+}
