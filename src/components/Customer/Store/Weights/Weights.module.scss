@@ -1,0 +1,45 @@
+@import "../../../../styles/constants.scss";
+
+.wrapper {
+  width: 100%;
+
+  .top {
+    width: 98%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    span {
+      font-weight: 700;
+      font-size: 1.7rem;
+      letter-spacing: 0.4px;
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  .inputError{
+    font-size: .8rem;
+    color: red;
+  }
+
+  .cards {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+
+    .menuIcon {
+      position: absolute;
+      top: 5%;
+      right: 3%;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+  }
+}
+
+ .inputError{
+    font-size: .74rem;
+    color: red;
+    margin-top: -7px;
+    margin-left: 5px;
+  }

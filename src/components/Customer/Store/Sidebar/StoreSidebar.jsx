@@ -1,14 +1,14 @@
 import React from "react";
 import css from "./StoreSidebar.module.scss";
-import Sidebar from "@/components/ui/sidebar";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { GoHome } from "react-icons/go";
-import { LuUsers2 } from "react-icons/lu";
-import { RiFileList3Line } from "react-icons/ri";
 import { IoSettingsOutline } from "react-icons/io5";
-import { CgProfile } from "react-icons/cg";
-import { IoCarSportOutline } from "react-icons/io5";
 import { BiCategory } from "react-icons/bi";
+import { MdOutlineFeaturedPlayList } from "react-icons/md";
+import { MdOutlineStoreMallDirectory } from "react-icons/md";
+import { MdPhotoSizeSelectSmall } from "react-icons/md";
+import { SiBrandfolder } from "react-icons/si";
+import { LiaWeightSolid } from "react-icons/lia";
 
 const StoreSidebar = () => {
   return (
@@ -33,13 +33,14 @@ const StoreSidebar = () => {
                 </span>
               </NavLink>
             </li>
+
             <li className="flex items-center px-6 py-3 hover:bg-gray-50 dark:hover:bg-gray-700">
               <NavLink
                 style={{ textDecoration: "none" }}
                 className="flex items-center space-x-3 text-gray-800"
-                href="#"
+                to="/admin/store/globalCategories"
               >
-                <BiCategory className="h-5 w-5 text-gray-500 dark:text-gray-400" />
+                <MdOutlineStoreMallDirectory className="h-5 w-5 text-gray-500 dark:text-gray-400" />
                 <span className="text-md font-medium">Global Categories</span>
               </NavLink>
             </li>
@@ -48,12 +49,59 @@ const StoreSidebar = () => {
               <NavLink
                 style={{ textDecoration: "none" }}
                 className="flex items-center space-x-3 text-gray-800"
-                href="#"
+                to="/admin/store/subGlobalCategories"
               >
-                <CgProfile className="h-5 w-5 text-gray-500 dark:text-gray-400" />
-                <span className="text-md font-medium">Profile</span>
+                <BiCategory className="h-5 w-5 text-gray-500 dark:text-gray-400" />
+                <span className="text-md font-medium">
+                  Sub Global Categories
+                </span>
               </NavLink>
             </li>
+
+            <li className="flex items-center px-6 py-3 hover:bg-gray-50 dark:hover:bg-gray-700">
+              <NavLink
+                style={{ textDecoration: "none" }}
+                className="flex items-center space-x-3 text-gray-800"
+                to="/admin/store/features"
+              >
+                <MdOutlineFeaturedPlayList className="h-5 w-5 text-gray-500 dark:text-gray-400" />
+                <span className="text-md font-medium">Features</span>
+              </NavLink>
+            </li>
+
+            <li className="flex items-center px-6 py-3 hover:bg-gray-50 dark:hover:bg-gray-700">
+              <NavLink
+                style={{ textDecoration: "none" }}
+                className="flex items-center space-x-3 text-gray-800"
+                to="/admin/store/brands"
+              >
+                <SiBrandfolder className="h-5 w-5 text-gray-500 dark:text-gray-400" />
+                <span className="text-md font-medium">Brands</span>
+              </NavLink>
+            </li>
+
+            <li className="flex items-center px-6 py-3 hover:bg-gray-50 dark:hover:bg-gray-700">
+              <NavLink
+                style={{ textDecoration: "none" }}
+                className="flex items-center space-x-3 text-gray-800"
+                to="/admin/store/sizes"
+              >
+                <MdPhotoSizeSelectSmall className="h-5 w-5 text-gray-500 dark:text-gray-400" />
+                <span className="text-md font-medium">Sizes</span>
+              </NavLink>
+            </li>
+
+            <li className="flex items-center px-6 py-3 hover:bg-gray-50 dark:hover:bg-gray-700">
+              <NavLink
+                style={{ textDecoration: "none" }}
+                className="flex items-center space-x-3 text-gray-800"
+                to="/admin/store/weights"
+              >
+                <LiaWeightSolid className="h-5 w-5 text-gray-500 dark:text-gray-400" />
+                <span className="text-md font-medium">Weights</span>
+              </NavLink>
+            </li>
+
             <li className="flex items-center px-6 py-3 hover:bg-gray-50 dark:hover:bg-gray-700">
               <NavLink
                 style={{ textDecoration: "none" }}
