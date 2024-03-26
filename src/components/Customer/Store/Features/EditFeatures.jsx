@@ -76,7 +76,7 @@ const EditFeatures = () => {
     const finalValues = {
       name: val.name,
       values: features,
-      sub_global_categories_ids: values,
+      // sub_global_categories_ids: values,
     };
     await updateFeatures({ id: id, data: finalValues });
   };
@@ -173,7 +173,7 @@ const EditFeatures = () => {
                   </div>
                 </div>
 
-                <div className={css.group}>
+                {/* <div className={css.group}>
                   {!isLoadingSubGlobalCategories && values && (
                     <Select
                       items={data?.categories}
@@ -237,7 +237,7 @@ const EditFeatures = () => {
                       )}
                     </Select>
                   )}
-                </div>
+                </div> */}
 
                 <div className={css.button}>
                   <Button
