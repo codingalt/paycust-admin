@@ -18,6 +18,8 @@ import EditFeaturesPage from '@/pages/Customer/Store/EditFeaturesPage';
 import SizesPage from '@/pages/Customer/Store/SizesPage';
 import WeightsPage from '@/pages/Customer/Store/WeightsPage';
 import BrandsPage from '@/pages/Customer/Store/BrandsPage';
+import UsersDashboardPage from '@/pages/Users/UsersDashboardPage';
+import KycApprovalsPage from '@/pages/Users/KycApprovalsPage';
 
 const AppRoutes = () => {
   return (
@@ -107,6 +109,18 @@ const AppRoutes = () => {
         exact
         path="/admin/taxi/vehicleApplications"
         element={<Protected Component={TaxiVehicleApplicationsPage} />}
+      />
+
+      {/* Users Routes  */}
+      <Route
+        exact
+        path="/admin/users/dashboard"
+        element={<Protected Component={UsersDashboardPage} />}
+      />
+      <Route
+        exact
+        path="/admin/users/kycApprovals"
+        element={<Protected Component={KycApprovalsPage} />}
       />
     </Routes>
   );

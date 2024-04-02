@@ -13,14 +13,18 @@ import { BsTaxiFront } from "react-icons/bs";
 import { MdCarRental } from "react-icons/md";
 import { PiBuildingsLight } from "react-icons/pi";
 import { useNavigate } from 'react-router-dom';
+import { FiUsers } from "react-icons/fi";
 
 const links = [
   { label: "Taxi", route: "/admin/taxi/dashboard", icon: <BsTaxiFront /> },
   { label: "Rent Park", route: "#", icon: <MdCarRental /> },
   { label: "Company", route: "#", icon: <PiBuildingsLight /> },
-  { label: "Store", route: "/admin/store/dashboard", icon: <PiBuildingsLight /> },
-  // { label: "Shelter", route: "/admin/shelter" },
-  // { label: "Food", route: "/admin/food" },
+  {
+    label: "Store",
+    route: "/admin/store/dashboard",
+    icon: <PiBuildingsLight />,
+  },
+  { label: "Users", route: "/admin/users/dashboard", icon: <FiUsers />},
 ];
 
 const ModuleCards = () => {

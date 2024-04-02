@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Blurhash } from "react-blurhash";
 import blankImage from "../../assets/Main/blank-img.jpg";
 
-const ImageComponent = ({ src, className, radius }) => {
+const ImageComponent = ({ src, className, radius, onClick }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [isError, setIsError] = useState(false);
 
@@ -13,7 +13,7 @@ const ImageComponent = ({ src, className, radius }) => {
     };
 
     img.onerror = () => {
-      console.error("Error loading image:", src);
+      // console.error("Error loading image:", src);
       setIsError(true);
     };
     img.src = src;
@@ -54,7 +54,11 @@ const ImageComponent = ({ src, className, radius }) => {
         src={src}
         className={className}
         alt="Image"
-        style={{ display: !imageLoaded ? "none" : "inline" }}
+        style={{
+          display: !imageLoaded ? "none" : "inline",
+          borderRadius: radius ? radius : "0px",
+        }}
+        onClick={() => onClick(src)}
       />
     </>
   );

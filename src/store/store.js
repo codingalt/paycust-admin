@@ -6,6 +6,7 @@ import { taxiApi } from "@/services/api/seller/taxi/taxiApi";
 import { storeCategoriesApi } from "@/services/api/customer/store/storeCategoriesApi";
 import { storeSizesWeightsApi } from "@/services/api/customer/store/storeSizesWeightsApi";
 import { storeBrandsApi } from "@/services/api/customer/store/storeBrandsApi";
+import { kycApi } from "@/services/api/usersApi/kycApi";
 
 export const store = configureStore({
   reducer: {
@@ -20,6 +21,9 @@ export const store = configureStore({
     [storeSizesWeightsApi.reducerPath]: storeSizesWeightsApi.reducer,
     [storeBrandsApi.reducerPath]: storeBrandsApi.reducer,
 
+    // Users Api
+    [kycApi.reducerPath]: kycApi.reducer,
+
     auth: authSlice,
   },
   middleware: (getDefaultMiddleware) =>
@@ -29,6 +33,7 @@ export const store = configureStore({
       storeCategoriesApi.middleware,
       storeSizesWeightsApi.middleware,
       storeBrandsApi.middleware,
+      kycApi.middleware,
     ]),
 });
 

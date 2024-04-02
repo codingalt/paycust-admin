@@ -22,7 +22,7 @@ const Login = () => {
     useMemo(() => {
       if (error) {
         console.log(error?.data);
-        toastError(error?.data?.message);
+        toastError(error?.data?.message ? error.data.message : "Uh ho! Something went wrong");
       }
     }, [error]);
 

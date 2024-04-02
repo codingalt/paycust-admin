@@ -8,7 +8,6 @@ export const authApi = createApi({
       const authToken = localStorage.getItem("flonestTokenAdmin");
       headers.set("authorization", `Bearer ${authToken}`);
       headers.set("x-app-type", "Web");
-      headers.set("Content-Type", "application/json");
       headers.set("Accept", "application/json");
       return headers;
     },
