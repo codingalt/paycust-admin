@@ -9,6 +9,9 @@ import { MdOutlineStoreMallDirectory } from "react-icons/md";
 import { MdPhotoSizeSelectSmall } from "react-icons/md";
 import { SiBrandfolder } from "react-icons/si";
 import { LiaWeightSolid } from "react-icons/lia";
+import { MdOutlineDiscount } from "react-icons/md";
+import { CiDiscount1 } from "react-icons/ci";
+import { TbShoppingBagDiscount } from "react-icons/tb";
 
 const StoreSidebar = () => {
   return (
@@ -99,6 +102,17 @@ const StoreSidebar = () => {
               >
                 <LiaWeightSolid className="h-5 w-5 text-gray-500 dark:text-gray-400" />
                 <span className="text-md font-medium">Weights</span>
+              </NavLink>
+            </li>
+
+            <li className="flex items-center px-6 py-3 hover:bg-gray-50 dark:hover:bg-gray-700">
+              <NavLink
+                style={{ textDecoration: "none" }}
+                className="flex items-center space-x-3 text-gray-800"
+                to="/admin/store/deals"
+              >
+                <TbShoppingBagDiscount className="h-5 w-5 text-gray-500 dark:text-gray-400" />
+                <span className="text-md font-medium">Deals</span>
               </NavLink>
             </li>
 

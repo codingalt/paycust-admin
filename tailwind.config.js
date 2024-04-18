@@ -10,6 +10,7 @@ module.exports = {
     "./app/**/*.{js,jsx}",
     "./src/**/*.{js,jsx}",
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/react-tailwindcss-datepicker/dist/index.esm.js",
   ],
   prefix: "",
   theme: {
@@ -77,5 +78,5 @@ module.exports = {
       },
     },
   },
-  plugins: [nextui(),require("tailwindcss-animate")],
+  plugins: [nextui(), require("tailwindcss-animate")],
 };

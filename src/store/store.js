@@ -7,6 +7,7 @@ import { storeCategoriesApi } from "@/services/api/customer/store/storeCategorie
 import { storeSizesWeightsApi } from "@/services/api/customer/store/storeSizesWeightsApi";
 import { storeBrandsApi } from "@/services/api/customer/store/storeBrandsApi";
 import { kycApi } from "@/services/api/usersApi/kycApi";
+import { storeDealsApi } from "@/services/api/customer/store/storeDealsApi";
 
 export const store = configureStore({
   reducer: {
@@ -20,6 +21,7 @@ export const store = configureStore({
     [storeCategoriesApi.reducerPath]: storeCategoriesApi.reducer,
     [storeSizesWeightsApi.reducerPath]: storeSizesWeightsApi.reducer,
     [storeBrandsApi.reducerPath]: storeBrandsApi.reducer,
+    [storeDealsApi.reducerPath]: storeDealsApi.reducer,
 
     // Users Api
     [kycApi.reducerPath]: kycApi.reducer,
@@ -33,6 +35,7 @@ export const store = configureStore({
       storeCategoriesApi.middleware,
       storeSizesWeightsApi.middleware,
       storeBrandsApi.middleware,
+      storeDealsApi.middleware,
       kycApi.middleware,
     ]),
 });

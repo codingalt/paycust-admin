@@ -31,3 +31,15 @@ export const addSizesSchema = Yup.object({
     .max(255, "Maximun characters are 255")
     .required("Name is Required"),
 });
+
+export const addDealSchema = Yup.object({
+  title: Yup.string()
+    .max(255, "Maximun characters are 255")
+    .required("Title is Required"),
+  start_date: Yup.string()
+    .max(255, "Maximun characters are 255")
+    .required("Start date is Required"),
+  expiry_date: Yup.string()
+    .max(255, "Maximun characters are 255")
+    .required("Expiry date is Required"),
+});

@@ -20,6 +20,8 @@ import WeightsPage from '@/pages/Customer/Store/WeightsPage';
 import BrandsPage from '@/pages/Customer/Store/BrandsPage';
 import UsersDashboardPage from '@/pages/Users/UsersDashboardPage';
 import KycApprovalsPage from '@/pages/Users/KycApprovalsPage';
+import AddDealsPage from '@/pages/Customer/Store/AddDealsPage';
+import DealsPage from '@/pages/Customer/Store/DealsPage';
 
 const AppRoutes = () => {
   return (
@@ -90,6 +92,16 @@ const AppRoutes = () => {
         exact
         path="/admin/store/brands"
         element={<Protected Component={BrandsPage} />}
+      />
+      <Route
+        exact
+        path="/admin/store/deals"
+        element={<Protected Component={DealsPage} />}
+      />
+      <Route
+        exact
+        path="/admin/store/addDeal"
+        element={<Protected Component={AddDealsPage} />}
       />
 
       {/* Seller Side  */}
