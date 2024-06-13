@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { setAuth } from "../../../services/slices/auth/authSlice";
 import css from "./Login.module.scss";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { useLoginUserMutation } from "../../../services/api/authApi/authApi";
+import { useLoginUserMutation } from "../../../services/api/authApi";
 import { loginSchema } from "../../../utils/validation/AuthValidation";
 import { useNavigate } from "react-router-dom";
 
@@ -31,12 +31,11 @@ const Login = () => {
         email: values.email,
         password: values.password,
       });
-      
-      console.log("Login res",data);
-      if (data?.token && data.is_admin) {
+ 
+      if (data?.token) {
         dispatch(setAuth(data?.user));
-        localStorage.setItem("flonestTokenAdmin", data?.token);
-        navigate("/");
+        localStorage.setItem("paycustTokenAdmin", data?.token);
+        navigate("/admin/dashboard");
       }
     };
 
@@ -46,7 +45,6 @@ const Login = () => {
       <div className={css.shape2}></div>
       <div className={css.shape3}></div>
       <header>
-        {/* <h3>Hello,</h3> */}
         <h3>Welcome Back</h3>
         <span>Login to browse Admin Dashboard</span>
       </header>

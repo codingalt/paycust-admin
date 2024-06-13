@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useValidateTokenQuery } from "../../services/api/authApi/authApi";
+import { useValidateTokenQuery } from "../../services/api/authApi";
 import CircleWithBars from "../Loader/CircleWithBars";
 import { setAuth } from "../../services/slices/auth/authSlice";
 import { useDispatch } from "react-redux";
@@ -24,7 +24,7 @@ const Protected = ({ Component }) => {
   } = useValidateTokenQuery(null, { refetchOnMountOrArgChange: true });
 
   useEffect(() => {
-    const authToken = localStorage.getItem("flonestTokenAdmin");
+    const authToken = localStorage.getItem("paycustTokenAdmin");
     if (!authToken) {
       navigate("/login");
     } else {
@@ -35,7 +35,7 @@ const Protected = ({ Component }) => {
           setShow(true);
         } else if (!isLoading && error) {
           setShow(false);
-          navigate("/login");
+          navigate("/");
         }
       }
     }

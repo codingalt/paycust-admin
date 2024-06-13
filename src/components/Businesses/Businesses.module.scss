@@ -1,0 +1,27 @@
+@import "../../styles/constants.scss";
+
+.wrapper {
+  width: 100%;
+  margin-top: .75rem;
+  padding-left: 0rem;
+
+  .top {
+    font-weight: 500;
+    font-size: 1.6rem;
+    letter-spacing: 0.4px;
+    margin-bottom: 2rem;
+    font-family: "Poppins", sans-serif;
+  }
+
+  @media (max-width: 768px) {
+    
+    .top {
+      font-size: 25px;
+      max-width: 90%;
+      margin-bottom: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      color: #000;
+    }
+  }
+}
