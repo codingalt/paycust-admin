@@ -57,7 +57,7 @@ const invoices = [
 export function UserTable() {
   return (
     <Table>
-      <TableCaption>A list of registered users on paycust.</TableCaption>
+      {/* <TableCaption>A list of registered users on paycust.</TableCaption> */}
       <TableHeader>
         <TableRow>
           <TableHead className="w-[100px]">Sno</TableHead>

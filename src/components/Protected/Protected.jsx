@@ -26,7 +26,7 @@ const Protected = ({ Component }) => {
   useEffect(() => {
     const authToken = localStorage.getItem("paycustTokenAdmin");
     if (!authToken) {
-      navigate("/login");
+      navigate("/");
     } else {
       // Check for token validity
       if (!isLoading) {

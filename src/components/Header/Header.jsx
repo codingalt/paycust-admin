@@ -23,7 +23,7 @@ const Header = ({ activeSidebar, setActiveSidebar, buttonRef }) => {
   const handleChange = () => {};
 
   const handleLogout = () => {
-    localStorage.removeItem("crmAdminToken");
+    localStorage.removeItem("paycustTokenAdmin");
     window.location.reload(false);
   };
 
