@@ -1,0 +1,108 @@
+@import "../../styles/constants.scss";
+
+.wrapper {
+  width: 100%;
+
+  .top {
+    width: 98%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    span {
+      font-weight: 700;
+      font-size: 1.7rem;
+      letter-spacing: 0.4px;
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    & {
+      padding-bottom: 1.9rem;
+
+      .top {
+        margin-top: 1.5rem;
+        width: 99%;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        span {
+          font-weight: 700;
+          font-size: 1.45rem;
+          margin-bottom: 0rem;
+        }
+
+        button {
+          margin-left: auto;
+          margin-top: 8px;
+        }
+      }
+    }
+  }
+}
+
+.inputError {
+  font-size: 0.74rem;
+  color: red;
+  margin-top: -7px;
+  margin-left: 5px;
+}
+
+// Edit Tag
+
+.editWrapper {
+  width: 100%;
+
+  .inputError {
+    color: #e8521e !important;
+    font-size: 0.8rem !important;
+    margin-top: 3px !important;
+  }
+
+  .top {
+    width: 98%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    span {
+      font-weight: 700;
+      font-size: 1.7rem;
+      letter-spacing: 0.4px;
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  .addForm {
+    width: 100%;
+    max-width: 700px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 2rem;
+    margin-top: 0rem;
+
+    .group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      margin-bottom: 1.1rem;
+
+      input,
+      select {
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        padding-left: 1rem;
+        outline: none;
+        height: 3rem;
+      }
+    }
+
+    .button {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+}

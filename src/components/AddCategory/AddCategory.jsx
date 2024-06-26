@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import css from "./AddGlobalCategory.module.scss";
-import { addGlobalCategorySchema } from "@/utils/validation/StoreValidation";
+import css from "./AddCategory.module.scss";
+import { addCategorySchema } from "@/utils/validation/CategoryValidation";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { Button } from "@/components/ui/button";
 import { FiUploadCloud } from "react-icons/fi";
@@ -10,9 +10,30 @@ import { toastError, toastSuccess } from "@/components/Toast/Toast";
 import { values } from "lodash";
 import Loader from "@/components/Loader/Loader";
 import { useAddCategoryMutation } from "@/services/api/categoryApi";
+import { Select, SelectItem } from "@nextui-org/select";
+import { Slider } from "@nextui-org/react";
 
-const AddGlobalCategory = () => {
+const genders = [
+  {
+    id: 1,
+    label: "Male",
+    value: "male",
+  },
+  {
+    id: 2,
+    label: "Female",
+    value: "female",
+  },
+  {
+    id: 3,
+    label: "General",
+    value: "general",
+  }
+]
+
+const AddCategory = () => {
   const [image, setImage] = useState(null);
+   const [ageGroup, setAgeGroup] = useState([0, 60]);
   const imageRef = useRef();
    const { toast } = useToast();
 
@@ -27,13 +48,14 @@ const AddGlobalCategory = () => {
 
   useMemo(()=>{
     if(isSuccess){
-      toastSuccess("Category was created successfully");
+      toastSuccess("Category created successfully");
       setImage(null)
     }
   },[isSuccess]);
 
   const initialValues = {
     name: "",
+    gender: "",
     image: "",
   };
 
@@ -47,9 +69,20 @@ const AddGlobalCategory = () => {
     }
   };
 
+   const handleSelectionChange = (e, setFieldValue) => {
+     const selectedValues = e.target.value
+       .split(",")
+       .map((value) => value.trim())
+       .filter((value) => value !== "");
+
+     setFieldValue("gender", selectedValues[0]);
+   };
+
   const handleSubmit = async (values, { resetForm }) => {
     let formData = new FormData();
     formData.append("name", values.name);
+    formData.append("gender", values.gender);
+    formData.append("ageGroup", ageGroup);
     formData.append("image", values.image);
 
     await addCategory(formData);
@@ -68,13 +101,13 @@ const AddGlobalCategory = () => {
       <div className={css.addForm}>
         <Formik
           initialValues={initialValues}
-          validationSchema={addGlobalCategorySchema}
+          validationSchema={addCategorySchema}
           onSubmit={handleSubmit}
         >
           {({ errors, setFieldValue, touched }) => (
             <Form>
               <div className={css.group}>
-                <label htmlFor="name">Name*</label>
+                <label htmlFor="name">Category Name*</label>
                 <Field
                   type="text"
                   name="name"
@@ -83,6 +116,61 @@ const AddGlobalCategory = () => {
                 />
                 <ErrorMessage
                   name="name"
+                  component="div"
+                  className={css.inputError}
+                />
+              </div>
+
+              <div className={css.group}>
+                <Select
+                  isRequired
+                  variant="bordered"
+                  label="Select gender for category"
+                  labelPlacement="outside"
+                  className="max-w-xxl"
+                  radius="sm"
+                  placeholder="Select gender for category"
+                  name="gender"
+                  id="gender"
+                  size="lg"
+                  onChange={(e) => handleSelectionChange(e, setFieldValue)}
+                >
+                  {genders?.map((item) => (
+                    <SelectItem key={item.id} value={item.value}>
+                      {item.label}
+                    </SelectItem>
+                  ))}
+                </Select>
+
+                <ErrorMessage
+                  name="gender"
+                  component="div"
+                  className={css.inputError}
+                />
+              </div>
+
+              <div className={css.group}>
+                <div className="flex flex-col gap-2 w-full h-full max-w-xxl items-start justify-center">
+                  <Slider
+                    label="Select age group"
+                    step={1}
+                    maxValue={100}
+                    minValue={0}
+                    value={ageGroup}
+                    onChange={setAgeGroup}
+                    className="max-w-xxl"
+                    showTooltip={true}
+                    color="primary"
+                  />
+                  <p className="text-default-500 font-medium text-small">
+                    Selected age group:{" "}
+                    {Array.isArray(ageGroup) &&
+                      ageGroup.map((b) => `${b}`).join(" – ")}
+                  </p>
+                </div>
+
+                <ErrorMessage
+                  name="ageGroup"
                   component="div"
                   className={css.inputError}
                 />
@@ -145,4 +233,4 @@ const AddGlobalCategory = () => {
   );
 };
 
-export default AddGlobalCategory;
+export default AddCategory;

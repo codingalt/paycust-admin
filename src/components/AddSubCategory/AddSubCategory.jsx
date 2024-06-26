@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import css from "./AddSubGlobalCategory.module.scss";
-import { addSubGlobalCategorySchema } from "@/utils/validation/StoreValidation";
+import css from "./AddSubCategory.module.scss";
+import { addSubCategorySchema } from "@/utils/validation/CategoryValidation";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { Button } from "@/components/ui/button";
 import { FiUploadCloud } from "react-icons/fi";
@@ -11,12 +11,12 @@ import { Select, SelectItem, Avatar, Chip } from "@nextui-org/react";
 import { Skeleton } from "@mui/material";
 import { useAddSubCategoryMutation, useGetCategoriesQuery } from "@/services/api/categoryApi";
 
-const AddSubGlobalCategory = () => {
+const AddSubCategory = () => {
     const [image, setImage] = useState(null);
     const imageRef = useRef();
     const {
       data,
-      isLoading: isLoadingGlobalCategories,
+      isLoading: isLoadingCategories,
       error: isFetchDataError,
     } = useGetCategoriesQuery();
 
@@ -86,7 +86,7 @@ const AddSubGlobalCategory = () => {
         ) : (
           <Formik
             initialValues={initialValues}
-            validationSchema={addSubGlobalCategorySchema}
+            validationSchema={addSubCategorySchema}
             onSubmit={handleSubmit}
           >
             {({ errors, setFieldValue, touched }) => (
@@ -120,6 +120,7 @@ const AddSubGlobalCategory = () => {
                     name="global_category_id"
                     id="global_category_id"
                     size="lg"
+                    isLoading={isLoadingCategories}
                     onChange={(e) =>
                       handleCategorySelectionChange(e, setFieldValue)
                     }
@@ -198,4 +199,4 @@ const AddSubGlobalCategory = () => {
   );
 }
 
-export default AddSubGlobalCategory
+export default AddSubCategory

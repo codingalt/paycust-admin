@@ -9,7 +9,7 @@ import {
 } from "@nextui-org/react";
 import { MdEditSquare } from "react-icons/md";
 import { AiFillDelete } from "react-icons/ai";
-import css from "./SubCategories.module.scss";
+import css from "./Tags.module.scss";
 import { HiDotsVertical } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 
@@ -21,7 +21,7 @@ const ActionDropdown = ({ item, openModal, setSelectedItem }) => {
   const handleSelection = (key) => {
     switch (key) {
       case "edit":
-        navigate(`/admin/edit/subCategory/${item.id}`);
+        navigate(`/admin/edit/tag/${item.id}`);
         break;
       case "delete":
         setSelectedItem(item);
@@ -35,7 +35,7 @@ const ActionDropdown = ({ item, openModal, setSelectedItem }) => {
   return (
     <Dropdown placement="bottom-end" backdrop="blur">
       <DropdownTrigger>
-        <div className={css.menuIcon}>
+        <div className="text-lg">
           <HiDotsVertical />
         </div>
       </DropdownTrigger>
@@ -43,7 +43,7 @@ const ActionDropdown = ({ item, openModal, setSelectedItem }) => {
         onAction={(key) => handleSelection(key)}
         selectionMode="single"
         variant="faded"
-        aria-label="Dropdown menu for subcategory"
+        aria-label="Dropdown menu for category"
       >
         <DropdownItem
           key="edit"
@@ -51,7 +51,7 @@ const ActionDropdown = ({ item, openModal, setSelectedItem }) => {
           description="Allows you to edit the item"
           startContent={<MdEditSquare className={iconClasses} />}
         >
-          Edit file
+          Edit
         </DropdownItem>
         <DropdownItem
           key="delete"
@@ -62,7 +62,7 @@ const ActionDropdown = ({ item, openModal, setSelectedItem }) => {
             <AiFillDelete className={cn(iconClasses, "text-danger")} />
           }
         >
-          Delete file
+          Delete
         </DropdownItem>
       </DropdownMenu>
     </Dropdown>

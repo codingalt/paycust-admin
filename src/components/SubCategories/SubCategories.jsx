@@ -1,34 +1,68 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
 import css from "./SubCategories.module.scss";
-import { useNavigate } from 'react-router-dom';
-import SubCategoryCard from './SubCategoryCard';
-import { Button } from '@/components/ui/button';
-import CardSkeleton from './CardSkeleton';
-import { BsClipboard2Data } from 'react-icons/bs';
-import c1 from "@/assets/c4.png";
-import c2 from "@/assets/c5.png";
-import c3 from "@/assets/c1.png";
-import c4 from "@/assets/c2.png";
+import { useNavigate } from "react-router-dom";
+import SubCategoryCard from "./SubCategoryCard";
+import { Button } from "@/components/ui/button";
+import CardSkeleton from "./CardSkeleton";
+import { BsClipboard2Data } from "react-icons/bs";
+import {
+  useDeleteSubCategoryMutation,
+  useGetSubCategoriesQuery,
+} from "@/services/api/categoryApi";
+import { toastSuccess } from "../Toast/Toast";
+import { useApiErrorHandling } from "@/hooks/useApiErrors";
+import ConfirmDelete from "./ConfirmDelete";
+import { useMainContext } from "@/context/MainContext";
 
 const SubCategories = () => {
   const navigate = useNavigate();
-  // const { data,isLoading, error } = useGetSubGlobalCategoriesQuery();
-   const data = [
-     {
-       name: "Shirts",
-       image: c1,
-     },
-     {
-       name: "Pants",
-       image: c2,
-     },
-     {
-       name: "Tablets",
-       image: c3,
-     },
-   ];
-   const isLoading = false;
-   const error = false;
+  const { data, isLoading } = useGetSubCategoriesQuery();
+  const [subCategories, setSubCategories] = useState(null);
+  const { searchQuery } = useMainContext();
+
+  useEffect(() => {
+    if (searchQuery !== "") {
+      const filteredData = data?.categories?.filter((item) => {
+        const { name } = item;
+        const searchTerm = searchQuery.toLowerCase();
+        return name && name.toLowerCase().includes(searchTerm);
+      });
+
+      setSubCategories(filteredData);
+    } else {
+      setSubCategories(data?.categories);
+    }
+  }, [searchQuery, data]);
+
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
+
+  const [deleteSubCategory, res] = useDeleteSubCategoryMutation();
+  const { isLoading: isLoadingDelete, isSuccess, error } = res;
+
+  const handleDeleteSubCategory = async () => {
+    if (selectedItem) {
+      await deleteSubCategory({ id: selectedItem?.id });
+    }
+  };
+
+  const apiErrors = useApiErrorHandling(error);
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  useEffect(() => {
+    if (isSuccess) {
+      closeModal();
+      toastSuccess("Sub category deleted successfully");
+      setSelectedItem(null);
+    }
+  }, [isSuccess]);
 
   return (
     <div className={css.wrapper}>
@@ -43,14 +77,16 @@ const SubCategories = () => {
       </div>
 
       <div
-        className={`${css.categories} gap-x-4 gap-y-5 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7`}
+        className={`${css.categories} gap-x-4 gap-y-5 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-7`}
       >
-        {data?.map((item) => (
-          <SubCategoryCard item={item} key={item.id} />
+        {subCategories?.map((item) => (
+          <SubCategoryCard
+            item={item}
+            key={item.id}
+            openModal={openModal}
+            setSelectedItem={setSelectedItem}
+          />
         ))}
-        {/* {data?.categories?.map((item) => (
-          <SubCategoryCard item={item} key={item.id} />
-        ))} */}
 
         {/* Loading Skeleton  */}
         {isLoading &&
@@ -58,26 +94,34 @@ const SubCategories = () => {
             <CardSkeleton key={index} />
           ))}
 
-        {/* Empty Data  */}
-        {!isLoading && data?.categories?.length === 0 && (
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "10px",
-              alignItems: "center",
-              width: "100%",
-              height: "450px",
-              justifyContent: "center",
-            }}
-          >
-            <BsClipboard2Data fontSize={40} />
-            <p style={{ fontSize: "1.1rem" }}>No Categories found</p>
-          </div>
-        )}
+        {/* Category Delete Confirmation  */}
+        <ConfirmDelete
+          modalIsOpen={modalIsOpen}
+          closeModal={closeModal}
+          isLoadingDelete={isLoadingDelete}
+          handleDeleteCategory={handleDeleteSubCategory}
+        />
       </div>
+
+      {/* Empty Data  */}
+      {!isLoading && subCategories?.length === 0 && (
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "10px",
+            alignItems: "center",
+            width: "100%",
+            height: "350px",
+            justifyContent: "center",
+          }}
+        >
+          <BsClipboard2Data fontSize={40} />
+          <p style={{ fontSize: "1.1rem" }}>No data found</p>
+        </div>
+      )}
     </div>
   );
-}
+};
 
-export default SubCategories
+export default SubCategories;

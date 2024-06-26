@@ -1,13 +1,11 @@
-import React, { useContext, useEffect, useMemo, useState } from "react";
+import React, { useState } from "react";
 import css from "./Header.module.scss";
 import { useNavigate } from "react-router-dom";
 import { CiSearch } from "react-icons/ci";
 import { FaChevronDown } from "react-icons/fa6";
 import { useMediaQuery } from "@uidotdev/usehooks";
-import { HiOutlineMenuAlt2 } from "react-icons/hi";
 import Avvvatars from "avvvatars-react";
 import { useSelector } from "react-redux";
-import { MdClose } from "react-icons/md";
 import {
   Dropdown,
   DropdownItem,
@@ -15,12 +13,18 @@ import {
   DropdownTrigger,
 } from "@nextui-org/react";
 import { BsThreeDots } from "react-icons/bs";
+import { useMainContext } from "@/context/MainContext";
 
 const Header = ({ activeSidebar, setActiveSidebar, buttonRef }) => {
   const navigate = useNavigate();
   const { user } = useSelector((store) => store.auth);
   const isSmallDevice = useMediaQuery("only screen and (max-width : 768px)");
-  const handleChange = () => {};
+  const { setSearchQuery } = useMainContext();
+
+  const handleChange = (e) => {
+    const { value } = e.target;
+    setSearchQuery(value);
+  };
 
   const handleLogout = () => {
     localStorage.removeItem("paycustTokenAdmin");
@@ -35,7 +39,7 @@ const Header = ({ activeSidebar, setActiveSidebar, buttonRef }) => {
           <input
             onKeyUp={handleChange}
             type="text"
-            placeholder="Search Users..."
+            placeholder="Search something..."
           />
         </div>
       </div>

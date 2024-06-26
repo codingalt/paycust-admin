@@ -8,7 +8,6 @@ export const authApi = createApi({
       const authToken = localStorage.getItem("paycustTokenAdmin");
       headers.set("authorization", `Bearer ${authToken}`);
       headers.set("x-app-type", "Web");
-      headers.set("Accept", "application/json");
       return headers;
     },
   }),

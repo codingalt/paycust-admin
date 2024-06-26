@@ -4,17 +4,19 @@ import ImageComponent from "@/components/ui/ImageComponent";
 import { HiDotsVertical } from "react-icons/hi";
 import ActionDropdown from './ActionDropdown';
 
-const SubCategoryCard = ({item}) => {
-  
+const SubCategoryCard = ({ item, openModal, setSelectedItem }) => {
   return (
     <div className={css.card}>
-      <ActionDropdown item={item} />
+      <ActionDropdown
+        item={item}
+        openModal={openModal}
+        setSelectedItem={setSelectedItem}
+      />
       <div className={css.image}>
-        {/* <ImageComponent
-          src={import.meta.env.VITE_STORE_SUB_GLOBAL_CATEGORIES + item?.image}
-        /> */}
         <ImageComponent
-          src={item?.image}
+          src={import.meta.env.VITE_STORE_SUB_GLOBAL_CATEGORIES + item?.image}
+          className={"rounded-lg"}
+          radius={"0.5rem"}
         />
       </div>
       <div className={css.name}>{item?.name}</div>
@@ -23,6 +25,6 @@ const SubCategoryCard = ({item}) => {
       </span>
     </div>
   );
-}
+};
 
 export default SubCategoryCard

@@ -6,9 +6,13 @@ import DashboardPage from '@/pages/DashboardPage';
 import CategoriesPage from '@/pages/CategoriesPage';
 import AddCategoryPage from '@/pages/AddCategoryPage';
 import SubCategoriesPage from '@/pages/SubCategoriesPage';
-import AddSubGlobalCategoryPage from '@/pages/AddSubGlobalCategoryPage';
+import AddSubCategoryPage from '@/pages/AddSubCategoryPage';
 import BusinessesPage from '@/pages/BusinessesPage';
 import UsersPage from '@/pages/UsersPage';
+import EditSubCategoryPage from '@/pages/EditSubCategoryPage';
+import EditCategoryPage from '@/pages/EditCategoryPage';
+import TagsPage from '@/pages/TagsPage';
+import EditTagPage from '@/pages/EditTagPage';
 
 const AppRoutes = () => {
   return (
@@ -42,7 +46,7 @@ const AppRoutes = () => {
       <Route
         exact
         path="/admin/addSubCategory"
-        element={<Protected Component={AddSubGlobalCategoryPage} />}
+        element={<Protected Component={AddSubCategoryPage} />}
       />
       <Route
         exact
@@ -54,11 +58,26 @@ const AppRoutes = () => {
         path="/admin/users"
         element={<Protected Component={UsersPage} />}
       />
-      {/* <Route
+      <Route
         exact
-        path="/admin/edit/subGlobalCategory/:id"
-        element={<Protected Component={EditSubGlobalCategoryPage} />}
-      /> */}
+        path="/admin/edit/subCategory/:id"
+        element={<Protected Component={EditSubCategoryPage} />}
+      />
+      <Route
+        exact
+        path="/admin/edit/category/:id"
+        element={<Protected Component={EditCategoryPage} />}
+      />
+      <Route
+        exact
+        path="/admin/tags"
+        element={<Protected Component={TagsPage} />}
+      />
+      <Route
+        exact
+        path="/admin/edit/tag/:id"
+        element={<Protected Component={EditTagPage} />}
+      />
     </Routes>
   );
 }

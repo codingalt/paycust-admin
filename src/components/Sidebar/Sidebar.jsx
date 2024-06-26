@@ -10,6 +10,7 @@ import { AiOutlineTags } from "react-icons/ai";
 import useClickOutside from "@/hooks/useClickOutside";
 import logo from "@/assets/logo.svg";
 import { Image } from "@nextui-org/react";
+import { useMainContext } from "@/context/MainContext";
 
 const links = [
   {
@@ -33,7 +34,7 @@ const links = [
   {
     id: 4,
     label: "Tags",
-    to: "#",
+    to: "/admin/tags",
     icon: <AiOutlineTags />,
   },
   {
@@ -53,6 +54,7 @@ const links = [
 const Sidebar = ({ activeSidebar, setActiveSidebar, buttonRef }) => {
   const [pathname, setPathname] = useState(window.location.pathname);
   const sidebarRef = useRef();
+  const { setSearchQuery } = useMainContext();
 
   useEffect(() => {
     const handlePathnameChange = () => setPathname(window.location.pathname);
@@ -60,11 +62,15 @@ const Sidebar = ({ activeSidebar, setActiveSidebar, buttonRef }) => {
     return () => window.removeEventListener("popstate", handlePathnameChange);
   }, []);
 
+  useEffect(() => {
+    setSearchQuery("");
+  }, [pathname]);
+
   useClickOutside(sidebarRef, () => setActiveSidebar(false), buttonRef);
 
   return (
     <div
-      className={`border-r z-[999] border-gray-200 shadow h-screen top-0 fixed inset-y-0 left-0 transform ${
+      className={`border-r z-50 border-gray-200 shadow h-screen top-0 fixed inset-y-0 left-0 transform ${
         activeSidebar ? "translate-x-0" : "-translate-x-full"
       } md:translate-x-0 transition-transform duration-400 ease-in-out md:flex md:h-screen bg-white`}
       ref={sidebarRef}

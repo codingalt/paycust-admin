@@ -1,10 +1,10 @@
-import AddGlobalCategory from '@/components/AddGlobalCategory/AddGlobalCategory'
+import AddCategory from '@/components/AddCategory/AddCategory'
 import Layout from '@/components/Layout/Layout'
 import React from 'react'
 
 const AddCategoryPage = () => {
   return (
-    <Layout children={<AddGlobalCategory />} />
+    <Layout children={<AddCategory />} />
   )
 }
 
